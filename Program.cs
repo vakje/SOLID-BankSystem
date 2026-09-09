@@ -9,22 +9,18 @@ namespace task2
 {
     public class Program
     {
-        /// <summary>
-        ///  hashseti rata unikaluri randomuli id hqondes momxmarebels 
-        /// </summary>
-       static HashSet<int> nums = new HashSet<int>();
-        static Random random = new Random();
+         
+        static HashSet<int> _Nums = new HashSet<int>();
+        static Random _Random = new Random();
         static int generateuniquerandomnumber()
         {
-            
-
             int randomnumber;
             do
             {
-                randomnumber = random.Next(100000000, 999999999);
+                randomnumber = _Random.Next(100000000, 999999999);
             }
-            while (nums.Contains(randomnumber));
-            nums.Add(randomnumber);
+            while (_Nums.Contains(randomnumber));
+            _Nums.Add(randomnumber);
 
             return randomnumber;
         }
@@ -34,31 +30,31 @@ namespace task2
             List<DepositAccount> TOP = new List<DepositAccount>();
             List<CreditAccount> BOTTOM = new List<CreditAccount>();
             
-            int randomid1=generateuniquerandomnumber();
-            int randomid2 = generateuniquerandomnumber();
-            int randomid3 = generateuniquerandomnumber();
-            int randomid4 = generateuniquerandomnumber();
-            int randomid5 = generateuniquerandomnumber();
-            int randomid6 = generateuniquerandomnumber();
-            int randomid7 = generateuniquerandomnumber();
-            int randomid8 = generateuniquerandomnumber();
-            int randomid9 = generateuniquerandomnumber();
+            int randomid1  = generateuniquerandomnumber();
+            int randomid2  = generateuniquerandomnumber();
+            int randomid3  = generateuniquerandomnumber();
+            int randomid4  = generateuniquerandomnumber();
+            int randomid5  = generateuniquerandomnumber();
+            int randomid6  = generateuniquerandomnumber();
+            int randomid7  = generateuniquerandomnumber();
+            int randomid8  = generateuniquerandomnumber();
+            int randomid9  = generateuniquerandomnumber();
             int randomid10 = generateuniquerandomnumber();
 
 
 
             try
-            {   // safety check 
-                if (Bank.accounts == null)
+            {  
+                if (Bank._Accounts == null)
                 {
-                    Bank.accounts = new List<Accounts>();
+                    Bank._Accounts = new List<Accounts>();
                 }
-                // vamateb masivshi obieqtebs da mat informacia 
-                Bank.accounts.Add( new Accounts("vako sherozia", 10000, randomid1));
-                Bank.accounts.Add(new Accounts("mixo sherozadze", 12000, randomid2));
-                Bank.accounts.Add(new Accounts("alexandre sherozedadze", 10000, randomid3));
-                Bank.accounts.Add(new Accounts("vakho smitadze", 1000, randomid4));
-                Bank.accounts.Add(new Accounts("vaja shukakidze", 10000000, randomid5));
+               
+                Bank._Accounts.Add( new Accounts("vako sherozia", 10000, randomid1));
+                Bank._Accounts.Add(new Accounts("mixo sherozadze", 12000, randomid2));
+                Bank._Accounts.Add(new Accounts("alexandre sherozedadze", 10000, randomid3));
+                Bank._Accounts.Add(new Accounts("vakho smitadze", 1000, randomid4));
+                Bank._Accounts.Add(new Accounts("vaja shukakidze", 10000000, randomid5));
 
                 List<DepositAccount> Deposit = new List<DepositAccount>
             {
@@ -71,7 +67,7 @@ namespace task2
                 new CreditAccount("rax raxashvili", 1050000, randomid10, 10.5),
             };
 
-                foreach (var item in Bank.accounts)
+                foreach (var item in Bank._Accounts)
                 {
                     Console.WriteLine(item.ToString());
                 }
@@ -87,7 +83,7 @@ namespace task2
                 decimal dep = 10;
                 
                 Console.WriteLine("-----------------------------depositing------------------------------------------");
-                foreach (var item in Bank.accounts)
+                foreach (var item in Bank._Accounts)
                 {
                     item.deposit(dep*10);
                 }
@@ -100,7 +96,7 @@ namespace task2
                     item.Deposit3(dep * 10);
                 }
                 Console.WriteLine("-----------------------------after depositing------------------------------------------");
-                foreach (var item in Bank.accounts)
+                foreach (var item in Bank._Accounts)
                 {
                     Console.WriteLine(item.ToString());
                 }
@@ -122,7 +118,7 @@ namespace task2
                    
                 }
                  Console.WriteLine("-----------------------------withdrawing------------------------------------------");
-                foreach (var item in Bank.accounts)
+                foreach (var item in Bank._Accounts)
                 {
                     item.withdraw(dep * 10);
                 }
@@ -135,7 +131,7 @@ namespace task2
                      item.Withdraw3(5001000);
                 }
                 Console.WriteLine("-----------------------------after withdrawing------------------------------------------");
-                foreach (var item in Bank.accounts)
+                foreach (var item in Bank._Accounts)
                 {
                     Console.WriteLine(item.ToString());
                 }

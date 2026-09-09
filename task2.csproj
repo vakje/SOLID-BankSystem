@@ -43,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts.cs" />
-    <Compile Include="Bank.cs" />
+    <Compile Include="BankSystem\Accounts.cs" />
+    <Compile Include="Analytics\Bank.cs" />
+    <Compile Include="BankSystem\CreditAccount.cs" />
+    <Compile Include="BankSystem\DepositAccount.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
