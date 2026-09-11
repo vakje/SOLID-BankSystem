@@ -43,15 +43,7 @@ namespace task2
 
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in Withdraw  function with object of a class CreditAccount \n");
-
-
             
-            if ((double)amount > _CreditAmount || !_Approved)
-            {
-                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{_Balance}");
-                return false;
-            }
-
             _balance -= amount;
 
             Console.WriteLine($"\nyou succesfully withdraw your money\n amount: {amount} \n now balance: {_balance} \n ");
