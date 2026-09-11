@@ -61,7 +61,8 @@ namespace task2
 
         public bool Approve(decimal creditAmount, decimal averagesalary)
         {
-            if (creditAmount > averagesalary * (38 / 100) ||  _Balance <= 0)
+            double percent_value = Math.Round(38.0f / 100.0f);
+            if (creditAmount > averagesalary * (decimal)percent_value ||  _Balance <= 0)
             {
                 Console.WriteLine("\nwe cannot approve your credit!! because you average salary are little low or you have no balance\n");
                 _Approved = false;

@@ -145,13 +145,13 @@ namespace task2
                     Console.WriteLine(item.ToString());
                 }
                 Console.WriteLine("-----------------------------top3 (positive)balance accounts------------------------------------------");
-                TOP = Bank.bigamountofmoney(Deposit);
+                TOP = Bank.GetTopThreeDepositAccounts(Deposit);
                 foreach (var item in TOP)
                 {
                     Console.WriteLine(item.ToString());
                 }
                 Console.WriteLine("-----------------------------top3 (negative)balance accounts------------------------------------------");
-                BOTTOM = Bank.bigamountofdept(Credit);
+                BOTTOM = Bank.GetTopThreeCreditDebts(Credit);
                 foreach (var item in BOTTOM)
                 {
                     Console.WriteLine(item.ToString());

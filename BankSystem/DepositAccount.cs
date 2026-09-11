@@ -13,13 +13,13 @@ namespace task2
 
         public DepositAccount(string initialCustomername, decimal intialbalance, int _AccountId, double d) : base(initialCustomername, intialbalance, _AccountId)
         {
+            _Depositrate = d;
             if (_Depositrate < 0)
                 throw new ArgumentOutOfRangeException(nameof(_Depositrate), "\ndepositrate is negative in constuctor of depositAccount \n ");
             
             if (_Balance < 0)
                 throw new ArgumentOutOfRangeException(nameof(_Balance), "\nbalance  is negative in constuctor of depositAccount \n ");
             
-            _Depositrate = d;
         }
 
         public override bool withdraw(decimal amount)
