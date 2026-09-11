@@ -49,6 +49,8 @@
     <Compile Include="BankSystem\DepositAccount.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testers\BankAccGenerator.cs" />
+    <Compile Include="Testers\BankAccSimulator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
