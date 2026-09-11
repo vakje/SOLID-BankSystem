@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace task2
 {
+    /// <summary>
+    /// class can withdraw any money since it is creditaccounts
+    /// </summary>
     public class CreditAccount : Accounts
     {
         public double _CreditRate { get; }
@@ -24,10 +27,6 @@ namespace task2
 
             }
         }
-        public override string ToString()
-        {
-            return $"\n fullname:{this._CustomerFullName}\n _AccountId: {this._AccountId} \n balance: {this._balance}\n CreditRate: {this._CreditRate}\n";
-        }
 
         public CreditAccount(string initialCustomername, decimal intialbalance, int _AccountId, double c) : base(initialCustomername, intialbalance, _AccountId)
         {
@@ -39,7 +38,7 @@ namespace task2
 
         }
 
-        public bool Withdraw3(decimal amount)
+        public override bool withdraw(decimal amount)
         {
 
             if (amount < 0)
@@ -49,7 +48,7 @@ namespace task2
             
             if ((double)amount > _CreditAmount || !_Approved)
             {
-                Console.WriteLine("\nyou cannot withdraw that much money\n ");
+                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{_Balance}");
                 return false;
             }
 
@@ -59,18 +58,18 @@ namespace task2
             return true;
         }
 
-        public void Deposit3(decimal amount)
+        public override void deposit(decimal amount)
         {
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "amount is negative in Deposit function in class CreditAccount ");
 
             _balance += amount;
-            Console.WriteLine($"\nyou have succesfully depos_AccountIdet money in your account ::{amount}:: now balance:{_balance} \n");
+            Console.WriteLine($"\nyou have succesfully deposit in your account ::{amount}:: now balance:{_balance} \n");
         }
 
         public bool Approve(decimal creditAmount, decimal averagesalary)
         {
-            if (creditAmount > averagesalary * (38 / 100) && _Balance <= 0)
+            if (creditAmount > averagesalary * (38 / 100) ||  _Balance <= 0)
             {
                 Console.WriteLine("\nwe cannot approve your credit!! because you average salary are little low or you have no balance\n");
                 _Approved = false;
@@ -80,10 +79,14 @@ namespace task2
             }
             _CreditAmount = (double)creditAmount;
 
-            Console.WriteLine($"\napproved a credit it's amount is {creditAmount}");
+            Console.WriteLine($"\napproved a credit it's amount is {creditAmount} avg salary {averagesalary} balance: {_balance}");
             _Approved = true;
             return true;
 
+        }
+        public override string ToString()
+        {
+            return $"\n Id: {this._AccountId} \n fullname:{this._CustomerFullName} \n balance: {this._balance}\n CreditRate: {this._CreditRate}\n";
         }
 
     }

@@ -10,10 +10,6 @@ namespace task2
     {
 
         public double _Depositrate { get; }
-        public override string ToString()
-        {
-            return $"\n fullname:{this._CustomerFullName}\n _AccountId: {this._AccountId} \n balance: {this._balance}\n Depositrate: {this._Depositrate}";
-        }
 
         public DepositAccount(string initialCustomername, decimal intialbalance, int _AccountId, double d) : base(initialCustomername, intialbalance, _AccountId)
         {
@@ -26,14 +22,14 @@ namespace task2
             _Depositrate = d;
         }
 
-        public bool WIthdraw(decimal amount)
+        public override bool withdraw(decimal amount)
         {
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount),"\namount is negative in WIthdraw function in DepositAccount class\n");
            
             if (amount > _Balance)
             {
-                Console.WriteLine("\nno such money on account\n");
+                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{_Balance}");
                 return false;
             }
             _balance -= amount;
@@ -41,7 +37,7 @@ namespace task2
             return true;
         }
 
-        public void DEposit(decimal amount)
+        public override void deposit(decimal amount)
         {
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(nameof(amount),"\namount is negative in DEposit function \n");
@@ -50,5 +46,9 @@ namespace task2
             Console.WriteLine($"\nyou have succesfully depos_AccountIdet money in your acount {amount} now balance is: {_balance}\n");
         }
 
+        public override string ToString()
+        {
+            return $"\n Id: {this._AccountId}\n fullname:{this._CustomerFullName} \n balance: {this._balance}\n Depositrate: {this._Depositrate}";
+        }
     }
 }

@@ -89,11 +89,11 @@ namespace task2
                 }
                 foreach (var item in Deposit)
                 {
-                    item.DEposit(dep * 10);
+                    item.deposit(dep * 10);
                 }
                 foreach (var item in Credit)
                 {
-                    item.Deposit3(dep * 10);
+                    item.deposit(dep * 10);
                 }
                 Console.WriteLine("-----------------------------after depositing------------------------------------------");
                 foreach (var item in Bank._Accounts)
@@ -124,11 +124,11 @@ namespace task2
                 }
                 foreach (var item in Deposit)
                 {
-                    item.WIthdraw(dep * 10);
+                    item.withdraw(dep * 10);
                 }
                 foreach (var item in Credit)
                 {
-                     item.Withdraw3(5001000);
+                     item.withdraw(5001000);
                 }
                 Console.WriteLine("-----------------------------after withdrawing------------------------------------------");
                 foreach (var item in Bank._Accounts)

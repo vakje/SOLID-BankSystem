@@ -12,12 +12,8 @@ namespace task2
         public int _AccountId  { get;}
         public string _CustomerFullName;
         protected decimal _balance;
-        public decimal _Balance { get { return _balance; }  }
+        public decimal _Balance => _balance;
        
-        public override string ToString()
-        {
-            return $"\n fullname:{this._CustomerFullName}\n _Account_AccountId: {this._AccountId} \n balance: {this._balance}";
-        }
        
         public Accounts(string initialCustomername , decimal intialbalance,int _accId) 
         {
@@ -28,15 +24,14 @@ namespace task2
                 throw new ArgumentOutOfRangeException(nameof(_Balance),"\namount is negative in constructor in Accounts class\n");
         }
        
-        public bool  withdraw(decimal amount)
+        public virtual bool withdraw(decimal amount)
         {
-
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in withdraw function in DepositAccount class\n");
 
             if (amount > _Balance)
             {
-                Console.WriteLine("\nno such money on account\n");
+                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{_Balance}");
                 return false;
             }
             _balance -= amount;
@@ -44,13 +39,17 @@ namespace task2
             return true;
         }
        
-        public void deposit(decimal amount) 
+        public virtual void deposit(decimal amount) 
         {
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in depositfromD function \n");
 
             _balance += amount;
-            Console.WriteLine($"\nyou have succesfully depos_Account_AccountIdet money in your acount {amount} now balance is: {_balance}\n");
+            Console.WriteLine($"\nyou have succesfully made a deposit  in your acount {amount} now balance is: {_balance}\n");
+        }
+        public override string ToString()
+        {
+            return $"\n Id: {this._AccountId} \n fullname:{this._CustomerFullName} \n balance: {this._balance} \n";
         }
         
     }
