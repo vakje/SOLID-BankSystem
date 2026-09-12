@@ -8,12 +8,12 @@ namespace task2
 {
     public class BankAccSimulator
     {
-        public static List<DepositAccount> GetTopThreeDepositAccounts(List<DepositAccount> accounts)
+        public List<DepositAccount> GetTopThreeDepositAccounts(List<DepositAccount> accounts)
         {
             // desc 
             return accounts.OrderByDescending(a => a._Balance).Take(3).ToList();
         }
-        public static List<CreditAccount> GetTopThreeCreditDebts(List<CreditAccount> accounts)
+        public List<CreditAccount> GetTopThreeCreditDebts(List<CreditAccount> accounts)
         {
             //asc
             return accounts.OrderBy(a => a._Balance).Take(3).ToList();

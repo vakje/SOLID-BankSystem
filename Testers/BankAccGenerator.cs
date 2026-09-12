@@ -35,10 +35,5 @@ namespace task2
             new CreditAccount("rax raxashvili", 1050000, GenerateRandomId(), 10.5)
         };
     }
-    public interface IAccountGenerator
-    {
-        List<Accounts> CreateBankAccounts { get; }
-        List<DepositAccount> CreateDepositAccounts { get; }
-        List<CreditAccount> CreateCreditAccounts { get; }
-    }
+    
 }

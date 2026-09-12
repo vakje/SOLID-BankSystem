@@ -46,6 +46,7 @@
     <Compile Include="BankSystem\Accounts.cs" />
     <Compile Include="BankSystem\CreditAccount.cs" />
     <Compile Include="BankSystem\DepositAccount.cs" />
+    <Compile Include="Interfaces\IAccountGenerator.cs" />
     <Compile Include="Interfaces\IAccountValidator.cs" />
     <Compile Include="Interfaces\Idepositable.cs" />
     <Compile Include="Interfaces\Iwithdrawable.cs" />
