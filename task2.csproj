@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankSystem\Accounts.cs" />
-    <Compile Include="Analytics\Bank.cs" />
     <Compile Include="BankSystem\CreditAccount.cs" />
     <Compile Include="BankSystem\DepositAccount.cs" />
     <Compile Include="Interfaces\IAccountValidator.cs" />

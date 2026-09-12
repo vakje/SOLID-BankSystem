@@ -8,6 +8,16 @@ namespace task2
 {
     public class BankAccSimulator
     {
+        public static List<DepositAccount> GetTopThreeDepositAccounts(List<DepositAccount> accounts)
+        {
+            // desc 
+            return accounts.OrderByDescending(a => a._Balance).Take(3).ToList();
+        }
+        public static List<CreditAccount> GetTopThreeCreditDebts(List<CreditAccount> accounts)
+        {
+            //asc
+            return accounts.OrderBy(a => a._Balance).Take(3).ToList();
+        }
         public void Simulation(List<Accounts> BaseAccs, List<DepositAccount> DepAccs, List<CreditAccount> CreditAccs)
         {
 
@@ -33,11 +43,11 @@ namespace task2
 
 
             Console.WriteLine("--- top 3 Positive Balance Accounts ---");
-            var top3 = Bank.GetTopThreeDepositAccounts(DepAccs);
+            var top3 = GetTopThreeDepositAccounts(DepAccs);
             top3.ForEach(a => Console.WriteLine(a));
 
             Console.WriteLine("\n--- bottom 3 Credit Debts ---");
-            var bottom3 = Bank.GetTopThreeCreditDebts(CreditAccs);
+            var bottom3 = GetTopThreeCreditDebts(CreditAccs);
             bottom3.ForEach(a => Console.WriteLine(a));
         }
 

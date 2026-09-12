@@ -10,19 +10,16 @@ namespace task2
 {
     public class Program
     {
+        
+
         public static void Main()
         {
             try
             {
-                BankAccGenerator generator = new BankAccGenerator();
+                IAccountGenerator generator = new BankAccGenerator();
                 BankAccSimulator simulation = new BankAccSimulator();
 
-                var accounts = generator.CreateBankAccounts;
-                var depositaccounts = generator.CreateDepositAccounts;
-                var creditaccounts = generator.CreateCreditAccounts;
-
-
-                simulation.Simulation(accounts, depositaccounts, creditaccounts);
+                simulation.Simulation(generator.CreateBankAccounts, generator.CreateDepositAccounts, generator.CreateCreditAccounts);
             }
             catch (ArgumentOutOfRangeException ex)
             {

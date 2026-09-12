@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task2
 {
-    public class BankAccGenerator
+    public class BankAccGenerator : IAccountGenerator
     {
         static Random _Random = new Random();
         static int digits = 9;
@@ -34,6 +34,11 @@ namespace task2
             new CreditAccount("raxac raxacashvili", 500000, GenerateRandomId(), 1.7),
             new CreditAccount("rax raxashvili", 1050000, GenerateRandomId(), 10.5)
         };
-
+    }
+    public interface IAccountGenerator
+    {
+        List<Accounts> CreateBankAccounts { get; }
+        List<DepositAccount> CreateDepositAccounts { get; }
+        List<CreditAccount> CreateCreditAccounts { get; }
     }
 }
