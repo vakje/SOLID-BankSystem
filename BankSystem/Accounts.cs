@@ -13,8 +13,7 @@ namespace task2
         public string _CustomerFullName;
         protected decimal _balance;
         public decimal _Balance => _balance;
-       
-       
+
         public Accounts(string initialCustomername , decimal intialbalance,int _accId) 
         {
             _CustomerFullName = initialCustomername ;

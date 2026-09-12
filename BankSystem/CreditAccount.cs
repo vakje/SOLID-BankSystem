@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace task2
 {
-    /// <summary>
-    /// class can withdraw any money since it is creditaccounts
-    /// </summary>
     public class CreditAccount : Accounts, IRateValidator, ICreditValidator, IDepositable, IWithdrawable
     {
         public double _CreditRate { get; }
