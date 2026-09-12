@@ -22,7 +22,7 @@ namespace task2
             AccountBalanceCheck(_balance);
         }
        
-        public bool withdraw(decimal amount)
+        public virtual bool withdraw(decimal amount)
         {
             MoneyAmountCheck(amount);
 
@@ -33,7 +33,7 @@ namespace task2
             return true;
         }
        
-        public void deposit(decimal amount) 
+        public virtual void deposit(decimal amount) 
         {
             MoneyAmountCheck(amount);
 

@@ -33,7 +33,7 @@ namespace task2
             }
         }
 
-        public bool withdraw(decimal amount)
+        public override bool withdraw(decimal amount)
         {
 
             MoneyAmountCheck(amount);
@@ -44,7 +44,7 @@ namespace task2
             return true;
         }
 
-        public void deposit(decimal amount)
+        public override void deposit(decimal amount)
         {
             MoneyAmountCheck(amount);
 
