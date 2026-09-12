@@ -9,7 +9,7 @@ namespace task2
     /// <summary>
     /// class can withdraw any money since it is creditaccounts
     /// </summary>
-    public class CreditAccount : Accounts
+    public class CreditAccount : Accounts, IRateValidator, ICreditValidator, IDepositable, IWithdrawable
     {
         public double _CreditRate { get; }
         private double _CreditAmount;
@@ -30,30 +30,26 @@ namespace task2
 
         public CreditAccount(string initialCustomername, decimal intialbalance, int _AccountId, double c) : base(initialCustomername, intialbalance, _AccountId)
         {
-
-            if (c < 0)
-                throw new ArgumentOutOfRangeException(nameof(c), "\namount is negative in CrediAccount constructor \n ");
-            
-            _CreditRate = c;
-
+            if (RateCheck(c) == true)
+            {
+                 _CreditRate = c;
+            }
         }
 
-        public override bool withdraw(decimal amount)
+        public bool withdraw(decimal amount)
         {
 
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in Withdraw  function with object of a class CreditAccount \n");
-            
+            MoneyAmountCheck(amount);
+
             _balance -= amount;
 
             Console.WriteLine($"\nyou succesfully withdraw your money\n amount: {amount} \n now balance: {_balance} \n ");
             return true;
         }
 
-        public override void deposit(decimal amount)
+        public void deposit(decimal amount)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "amount is negative in Deposit function in class CreditAccount ");
+            MoneyAmountCheck(amount);
 
             _balance += amount;
             Console.WriteLine($"\nyou have succesfully deposit in your account ::{amount}:: now balance:{_balance} \n");
@@ -61,14 +57,10 @@ namespace task2
 
         public bool Approve(decimal creditAmount, decimal averagesalary)
         {
-            double percent_value = Math.Round(38.0f / 100.0f);
-            if (creditAmount > averagesalary * (decimal)percent_value ||  _Balance <= 0)
+            if (CreditApproval(creditAmount, averagesalary, _Balance) == false)
             {
-                Console.WriteLine("\nwe cannot approve your credit!! because you average salary are little low or you have no balance\n");
                 _Approved = false;
-
-                return false;
-
+                return _Approved;
             }
             _CreditAmount = (double)creditAmount;
 
@@ -82,5 +74,26 @@ namespace task2
             return $"\n Id: {this._AccountId} \n fullname:{this._CustomerFullName} \n balance: {this._balance}\n CreditRate: {this._CreditRate}\n";
         }
 
+        public bool RateCheck(double Xrate)
+        {
+            if (Xrate < 0)
+                throw new ArgumentOutOfRangeException(nameof(Xrate), "\namount is negative in CrediAccount\n ");
+
+            return true;
+        }
+
+        public bool CreditApproval(decimal creditAmount, decimal averagesalary, decimal balance)
+        {
+            double percent_value = Math.Round(38.0f / 100.0f);
+            if (creditAmount > averagesalary * (decimal)percent_value || balance <= 0)
+            {
+                Console.WriteLine("\nwe cannot approve your credit!! because you average salary are little low or you have no balance\n");
+                _Approved = false;
+
+                return false;
+
+            }
+            return true;
+        }
     }
 }

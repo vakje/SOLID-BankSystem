@@ -11,7 +11,7 @@ namespace task2
         public void Simulation(List<Accounts> BaseAccs, List<DepositAccount> DepAccs, List<CreditAccount> CreditAccs)
         {
 
-            var Allaccounts = BaseAccs.Cast<Accounts>().Concat(DepAccs).Concat(CreditAccs).ToList();
+            var Allaccounts = BaseAccs.Concat(DepAccs).Concat(CreditAccs).ToList();
 
             PrintSections("Printing", Allaccounts);
 

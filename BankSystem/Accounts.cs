@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace task2
 {
-    public class Accounts
+    public class Accounts : IAccountValidator, IDepositable, IWithdrawable
     { 
         public int _AccountId  { get;}
         public string _CustomerFullName;
@@ -20,29 +20,23 @@ namespace task2
             _CustomerFullName = initialCustomername ;
             _balance = intialbalance;
             _AccountId = _accId;
-            if (_Balance < 0)
-                throw new ArgumentOutOfRangeException(nameof(_Balance),"\namount is negative in constructor in Accounts class\n");
+            AccountBalanceCheck(_balance);
         }
        
-        public virtual bool withdraw(decimal amount)
+        public bool withdraw(decimal amount)
         {
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in withdraw function in DepositAccount class\n");
+            MoneyAmountCheck(amount);
 
-            if (amount > _Balance)
-            {
-                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{_Balance}");
-                return false;
-            }
+            WithdrawableMoneyCheck(amount, _balance);
+
             _balance -= amount;
             Console.WriteLine($"\nyou succesfully withdraw your money {amount}\n now Balance: {_balance}\n");
             return true;
         }
        
-        public virtual void deposit(decimal amount) 
+        public void deposit(decimal amount) 
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in depositfromD function \n");
+            MoneyAmountCheck(amount);
 
             _balance += amount;
             Console.WriteLine($"\nyou have succesfully made a deposit  in your acount {amount} now balance is: {_balance}\n");
@@ -51,7 +45,31 @@ namespace task2
         {
             return $"\n Id: {this._AccountId} \n fullname:{this._CustomerFullName} \n balance: {this._balance} \n";
         }
-        
+
+        public bool MoneyAmountCheck(decimal amount)
+        {
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount), "\namount is negative in withdraw function in DepositAccount class\n");
+            return true;
+        }
+
+        public bool AccountBalanceCheck(decimal balance)
+        {
+            if (balance < 0)
+                throw new ArgumentOutOfRangeException(nameof(balance), "\namount is negative in constructor in Accounts class\n");
+
+            return true;
+        }
+
+        public bool WithdrawableMoneyCheck(decimal amount, decimal balance)
+        {
+            if (amount > balance)
+            {
+                Console.WriteLine($"\nno such money on account\n cant withdraw {amount} you have balance:{balance}");
+                return false;
+            }
+            return true;
+        }
     }
    
     
