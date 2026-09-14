@@ -61,28 +61,25 @@ I mostly worked on this within my Main program, where I previously had a lot of 
 I moved most of that code out of Main and into separate classes. It is not ideal yet, but I think it is going in the right direction.
 ```csharp
    public static void Main()
-        {
-            try
-            {
-                BankAccGenerator generator = new BankAccGenerator();
-                BankAccSimulator simulation = new BankAccSimulator();
+  {
+      try
+      {
+          IAccountGenerator generator = new BankAccGenerator();
+          BankAccSimulator simulation = new BankAccSimulator();
 
-                var accounts = generator.CreateBankAccounts;
-                var depositaccounts = generator.CreateDepositAccounts;
-                var creditaccounts = generator.CreateCreditAccounts;
+          simulation.Simulation(generator.CreateBankAccounts, generator.CreateDepositAccounts, generator.CreateCreditAccounts);
+      }
+      catch (ArgumentOutOfRangeException ex)
+      {
+          Console.WriteLine($"Error occurred: {ex.Message}");
+      }
+      finally
+      {
+          Console.ReadLine();
+      }
 
-                simulation.Simulation(accounts, depositaccounts, creditaccounts);
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                Console.WriteLine($"Error occurred: {ex.Message}");
-            }
-            finally
-            {
-                Console.ReadLine();
-            }
-
-            }
+      }
+}
 ```
 What I think is good about this implementation is that Main is no longer manually creating accounts and testing their functionality. 
 Instead, it is calling higher-level components such as BankAccGenerator and BankAccSimulator, which handle those responsibilities separately.
